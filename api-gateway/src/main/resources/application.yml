@@ -1,0 +1,30 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/
+server:
+  port: 5555
+spring:
+  application:
+    name: api-gateway
+zuul:
+  # 解决重定向后暴露真实服务地址问题，开启此项配置后zuul在进行路由转发前会为请求设置Host头信息
+  add-host-header: true
+  # 关闭zuul自动路由功能，防止服务泄露
+  ignored-services: '*'
+  # 屏蔽部分接口路由功能
+  ignored-patterns: /api-a/**/instance/**
+  # 配置顺序将影响路由的优先级
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service
+    api-b:
+      path: /api-b/**
+      serviceId: consumer-feign
+      # 允许Cookie传递，默认不传递Cookie信息
+      custom-sensitive-headers: true
+      # 使用path与url配置映射关系时，路由转发的请求不支持断路器及负载均衡功能
+    local:
+      path: /local/**
+      url: forward:/
