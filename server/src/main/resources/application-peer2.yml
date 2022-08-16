@@ -1,0 +1,16 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/
+  instance:
+    hostname: peer2
+  server:
+    enable-self-preservation: false
+server:
+  port: 1112
+spring:
+  application:
+    name: server
+      
