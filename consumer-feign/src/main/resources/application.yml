@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: consumer-feign
+server:
+  port: 9083
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:1111/eureka/
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 1000
+        read-timeout: 5000
+      service-service:
+        connect-timeout: 100
+        read-timeout: 100
+        logger-level: full
+        retryer: com.wangchangyang.config.FeignRetryerConfig
+      service-user:
+        connect-timeout: 100
+        read-timeout: 100
+  httpclient:
+    enabled: true
+  hystrix:
+    enabled: true
+
+# 针对单个方法设置超时时间,feign暂不支持，需使用hystrix相关配置实现
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+    ServiceServiceApi#instance():
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500
