@@ -1,0 +1,46 @@
+﻿﻿# Compiled class file
+*.class
+ 
+# Eclipse
+.project
+.classpath
+.settings/
+.factorypath
+.metadata/
+ 
+# Intellij
+*.ipr
+*.iml
+*.iws
+.idea/
+ 
+# Maven
+target/
+.mvn/
+mvnw
+mvnw.cmd
+ 
+# Gradle
+build
+.gradle
+ 
+# Log file
+*.log
+# log/
+ 
+# out
+# **/out/
+ 
+# Mac
+.DS_Store
+ 
+# others
+*.jar
+*.war
+# *.zip
+*.tar
+*.tar.gz
+*.pid
+*.orig
+# temp/
+HELP.md
